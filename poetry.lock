@@ -603,21 +603,19 @@ tests = ["asttokens (>=2.1.0)", "coverage", "coverage-enable-subprocess", "ipyth
 
 [[package]]
 name = "fastembed"
-version = "0.5.1"
+version = "0.6.0"
 description = "Fast, light, accurate library built for retrieval embedding generation"
 optional = true
 python-versions = ">=3.9.0"
 groups = ["main"]
 markers = "extra == \"fastembed\""
-files = [
-    {file = "fastembed-0.5.1-py3-none-any.whl", hash = "sha256:93dc5a0d0e39b4a38f1525c97624e97bfc0d879fea0e92779ec4606046fe91cb"},
-    {file = "fastembed-0.5.1.tar.gz", hash = "sha256:93ccdbead9daadde6af37862c53b92fd15fa3115d20bbddb258faa0a5eb36718"},
-]
+files = []
+develop = false
 
 [package.dependencies]
 huggingface-hub = ">=0.20,<1.0"
-loguru = ">=0.7.2,<0.8.0"
-mmh3 = ">=4.1.0,<5.0.0"
+loguru = "^0.7.2"
+mmh3 = ">=4.1.0,<6.0.0"
 numpy = [
     {version = ">=2.1.0", markers = "python_version >= \"3.13\""},
     {version = ">=1.21,<2.1.0", markers = "python_version < \"3.10\""},
@@ -627,13 +625,19 @@ numpy = [
 onnxruntime = [
     {version = ">1.20.0", markers = "python_version >= \"3.13\""},
     {version = ">=1.17.0,<1.20.0", markers = "python_version < \"3.10\""},
-    {version = ">=1.17.0,<1.20.0 || >1.20.0", markers = "python_version >= \"3.10\" and python_version < \"3.13\""},
+    {version = ">=1.17.0,!=1.20.0", markers = "python_version >= \"3.10\" and python_version < \"3.13\""},
 ]
-pillow = ">=10.3.0,<11.0.0"
-py-rust-stemmers = ">=0.1.0,<0.2.0"
-requests = ">=2.31,<3.0"
+pillow = ">=10.3.0,<12.0.0"
+py-rust-stemmers = "^0.1.0"
+requests = "^2.31"
 tokenizers = ">=0.15,<1.0"
-tqdm = ">=4.66,<5.0"
+tqdm = "^4.66"
+
+[package.source]
+type = "git"
+url = "https://github.com/qdrant/fastembed.git"
+reference = "HEAD"
+resolved_reference = "aa0c475a1f3a832e0f49b10b263f697fe558c1bd"
 
 [[package]]
 name = "fastembed-gpu"
@@ -3512,4 +3516,4 @@ fastembed-gpu = ["fastembed-gpu"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.9"
-content-hash = "a34c0bae4254e8b9b862c8d8cd870598d4ade96f8d132f5d259b9175d991f7e6"
+content-hash = "55eb440758a57121b074966cad57e371ae4023e201cacf8ea1a16a2b792fe129"
