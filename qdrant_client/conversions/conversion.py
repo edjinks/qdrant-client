@@ -2347,6 +2347,12 @@ class RestToGrpc:
         )
 
     @classmethod
+    def convert_geo_polygon(cls, model: rest.GeoPolygon) -> grpc.GeoPolygon:
+        return grpc.GeoPolygon(
+            exterior=grpc.GeoLineString(points=[cls.convert_geo_point(point) for point in model.exterior.points])
+        )
+
+    @classmethod
     def convert_geo_bounding_box(cls, model: rest.GeoBoundingBox) -> grpc.GeoBoundingBox:
         return grpc.GeoBoundingBox(
             top_left=cls.convert_geo_point(model.top_left),
@@ -2395,6 +2401,10 @@ class RestToGrpc:
         if model.geo_radius:
             return grpc.FieldCondition(
                 key=model.key, geo_radius=cls.convert_geo_radius(model.geo_radius)
+            )
+        if model.geo_polygon:
+            return grpc.FieldCondition(
+                key=model.key, geo_polygon=cls.convert_geo_polygon(model.geo_polygon)
             )
         if model.values_count:
             return grpc.FieldCondition(
